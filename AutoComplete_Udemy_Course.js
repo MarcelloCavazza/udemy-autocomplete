@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AutoComplete Course
 // @namespace    http://tampermonkey.net/
-// @version      1.0.0
+// @version      1.0.2
 // @description  Mask as done all your Udemy's classes
 // @author       Marcello Cavazza
 // @match        https://www.udemy.com/course/*
