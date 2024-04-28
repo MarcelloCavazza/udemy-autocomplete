@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         AutoComplete Udemy Course
+// @name         AutoComplete Course
 // @namespace    http://tampermonkey.net/
 // @version      1.0.0
 // @description  Mask as done all your Udemy's classes
@@ -11,15 +11,14 @@
 
 (function() {
     'use strict';
+
     var button = document.createElement('button');
 
-    // Set the button's text content
     button.textContent = 'Complete course';
     button.style.zIndex = '99999999';
-    // Apply styles to the button
     button.style.position = 'fixed';
-    button.style.top = '20px'; // Adjust as needed
-    button.style.left = '20px'; // Adjust as needed
+    button.style.top = '20px';
+    button.style.left = '20px';
     button.style.background = '#007bff';
     button.style.color = '#fff';
     button.style.border = 'none';
@@ -27,12 +26,9 @@
     button.style.borderRadius = '5px';
     button.style.cursor = 'pointer';
 
-    // Append the button to the body element
     document.body.appendChild(button);
 
-    // Add an event listener to the button for the click event
     button.addEventListener('click', function() {
-        // Perform some action when the button is clicked
         try{
             const mainContentList = document.getElementById("ct-sidebar-scroll-container");
             if(mainContentList != undefined && mainContentList.childNodes.length > 0){
@@ -42,7 +38,7 @@
                         const isChapterOpen = child.children[0].dataset.checked === "checked";
                         if(!isChapterOpen) {
                             child.children[1].click();
-                        }//child.children[child.childNodes.length-1].children[0].children[0].childNodes[0].children[0].children[0].children[0]
+                        }
                         const canIFindContentForThisChapter = child.children[child.childNodes.length-1].children[0].childNodes.length > 0;
                         if(canIFindContentForThisChapter){
                             const classesOfCurrentChapter = child.children[child.childNodes.length-1].children[0].children[0].childNodes;
@@ -68,5 +64,4 @@
             console.error(ex);
         }
     });
-    // Your code here...
 })();
