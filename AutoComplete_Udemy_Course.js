@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AutoComplete Course
 // @namespace    http://tampermonkey.net/
-// @version      1.0.2
+// @version      1.1.2
 // @description  Mask as done all your Udemy's classes
 // @author       Marcello Cavazza
 // @match        https://www.udemy.com/course/*
@@ -34,6 +34,7 @@
             if(mainContentList != undefined && mainContentList.childNodes.length > 0){
                 let chapters = mainContentList.children[0].children[0].childNodes;
                 if(chapters != undefined) {
+                    //marking as complete each class
                     chapters.forEach((child) => {
                         const isChapterOpen = child.children[0].dataset.checked === "checked";
                         if(!isChapterOpen) {
@@ -49,7 +50,6 @@
                                     if(buttonLabel != undefined){
                                         const isActive = buttonLabel.indexOf("completed") != -1;
                                         if(!isActive){
-                                            console.log("aa");
                                             buttonToConcludeClass.click();
                                         }
                                     }
@@ -58,6 +58,21 @@
                             }
                         }
                     });
+                    //now it will enter on the last class and make udemy identify as completed the course
+                    const lastChapter = chapters[chapters.length-1];
+                    const isChapterOpen = lastChapter.children[0].dataset.checked === "checked";
+                    if(!isChapterOpen) {
+                        lastChapter.children[1].click();
+                    }
+                    const amountOfClasses = lastChapter.children[lastChapter.childNodes.length-1].children[0].children[0].childNodes.length;
+                    const canIFindContentForThisChapter = amountOfClasses > 0;
+                    if(canIFindContentForThisChapter){
+                        const classOfCurrentChapter = lastChapter.children[lastChapter.childNodes.length-1].children[0].children[0].childNodes[amountOfClasses - 1];
+                        classOfCurrentChapter.click();
+                    }
+
+                    window.alert("Completed all course!\nPage will be refreshed!\nIf doesn't complete everything, just click the button again.");
+                    location.reload(true)
                 }
             }
         }catch(ex){
