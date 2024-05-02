@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AutoComplete Course
 // @namespace    http://tampermonkey.net/
-// @version      1.1.2
+// @version      1.1.3
 // @description  Mask as done all your Udemy's classes. Will be shown a blue button to complete the opened course.
 // @author       Marcello Cavazza
 // @match        https://www.udemy.com/course/*
