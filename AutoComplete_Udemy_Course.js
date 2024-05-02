@@ -2,7 +2,7 @@
 // @name         AutoComplete Course
 // @namespace    http://tampermonkey.net/
 // @version      1.1.2
-// @description  Mask as done all your Udemy's classes
+// @description  Mask as done all your Udemy's classes. Will be shown a blue button to complete the opened course.
 // @author       Marcello Cavazza
 // @match        https://www.udemy.com/course/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=udemy.com
