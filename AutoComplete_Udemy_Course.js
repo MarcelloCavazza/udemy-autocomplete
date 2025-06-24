@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AutoComplete Course
 // @namespace    http://tampermonkey.net/
-// @version      1.1.4
+// @version      1.1.5
 // @description  Mask as done all your Udemy's classes. Will be shown a blue button to complete the opened course.
 // @author       Marcello Cavazza
 // @match        https://www.udemy.com/course/*
@@ -46,14 +46,11 @@
                             if(classesOfCurrentChapter != undefined){
                                 classesOfCurrentChapter.forEach((classOfChapter)=>{
                                     const buttonToConcludeClass = classOfChapter.children[0].children[0].children[0];
-                                    const buttonLabel = buttonToConcludeClass.children[buttonToConcludeClass.childNodes.length-1].innerHTML;
-                                    if(buttonLabel != undefined){
-                                        const isActive = buttonLabel.indexOf("completed") != -1;
-                                        if(!isActive){
-                                            buttonToConcludeClass.click();
-                                        }
-                                    }
+                                    const isAlreadyChecked = buttonToConcludeClass.childNodes[0].checked;
 
+                                    if(!isAlreadyChecked){
+                                        buttonToConcludeClass.click();
+                                    }
                                 });
                             }
                         }
